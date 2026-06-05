@@ -3,10 +3,11 @@ import Nav from "./components/Nav";
 
 
 function App() {
-  return 
+  return (
   <div className="App">
     <Nav />
-  </div>;
+  </div>
+  );
 }
 
 export default App;
