@@ -5,14 +5,15 @@ import React from "react";
 import Home from "./pages/Home";
 import Books from "./pages/Books";
 
+
 function App() {
   return (
     <Router>
       <div className="App">
         <Nav />
         <Routes>
-         <Route path="/" exact component={<Home />} />
-         <Route path="/books" component={<Books />} />
+         <Route path="/" exact element={<Home />} />
+         <Route path="/books" element={<Books />} />
         </Routes>
         <Footer />
       </div>
