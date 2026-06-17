@@ -12,7 +12,7 @@ const Books = () => {
                   All Books
                 </h2>
                 <select id="filter">
-                  <option value="" selected disabled>
+                  <option value="" disabled>
                     Sort
                   </option>
                   <option value="LOW_TO_HIGH">Price, Low to High</option>
