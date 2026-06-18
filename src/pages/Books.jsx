@@ -2,15 +2,28 @@ import React, { useState } from "react";
 import Book from "../components/ui/Book";
 
 const Books = ({books: initialBooks }) => {
-    const [books, setBooks] = useState(initialBooks);
+    const [filter, setFilter] = useState("DEFAULT");
 
-    function filterBooks(filter) {
-        console.log(filter)
-        if (filter === 'LOW_TO_HIGH') {
-         setBooks(books.slice().sort((a, b) => (a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice)))
-
-        }
+    function handleFilterChange(event) {
+    setFilter(event.target.value); 
     }
+
+    const sortedBooks = initialBooks.slice().sort((a, b) => {
+    const priceA = a.salePrice || a.originalPrice;
+    const priceB = b.salePrice || b.originalPrice;
+
+    if (filter === "LOW_TO_HIGH") {
+      return priceA - priceB;
+    }
+    if (filter === "HIGH_TO_LOW") {
+      return priceB - priceA;
+    }
+    if (filter === "RATING") {
+      return b.rating - a.rating;
+    }
+    return 0;
+    });
+
 
   return (
     <div id="books__body">
@@ -22,8 +35,8 @@ const Books = ({books: initialBooks }) => {
                 <h2 className="section__title books__header--title">
                   All Books
                 </h2>
-                <select id="filter" defaultValue="DEFAULT" onChange={filterBooks}>
-                  <option value="" disabled> 
+                <select id="filter"  value={filter} onChange={handleFilterChange}>
+                  <option value="DEFAULT" disabled>  
                     Sort
                   </option>
                   <option value="LOW_TO_HIGH">Price, Low to High</option>
@@ -32,11 +45,11 @@ const Books = ({books: initialBooks }) => {
                 </select>
               </div>
               <div className="books">
-                {books.map((book) => (
+                {sortedBooks.map((book) => (
                   <Book book={book} key={book.id} />
                 ))}
               </div>
-            </div>
+            </div> 
           </div>
         </section>
       </main>
