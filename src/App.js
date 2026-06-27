@@ -44,7 +44,7 @@ function App() {
   //   console.log(cart);
   // }, [cart])
 
-  
+
 
   return (
     <Router>
@@ -53,7 +53,7 @@ function App() {
         <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/books" element= {<Books books={books}/>} />
-         <Route path="/books/:id" element={<BookInfo books={books} addToCart={addToCart}/>} />
+         <Route path="/books/:id" element={<BookInfo cart={cart} books={books} addToCart={addToCart}/>} />
          <Route path="/cart" element={<Cart books={books}/>} />
         </Routes>
         <Footer />
